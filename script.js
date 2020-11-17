@@ -4,7 +4,7 @@
 
 function calculateOutput(){
     console.log("Started calculation")
-    fetchInput()
+    const {inputHTML, selectedSortTypeRadioButtonId, selectedSortTypeInputVal} = fetchInput()
 }
 
 function fetchInput(){
@@ -14,5 +14,5 @@ function fetchInput(){
     const selectedSortTypeInputId = selectedSortTypeRadioButtonId + "Input"
     const selectedSortTypeInputVal = $("#" + selectedSortTypeInputId).val()
 
-    console.log(selectedSortTypeInputVal)
+    return {inputHTML, selectedSortTypeRadioButtonId, selectedSortTypeInputVal}
 }
