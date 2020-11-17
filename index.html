@@ -10,7 +10,7 @@
 <body>
     <main>
         <div class="input">
-            <h2>Input</h2>
+            <h2 class="inputOutputHeader">Input</h2>
             <div class="sortOptions">
                 <input type="radio" id="separator" name="sortTypeRadio">
                 <label for="separator">Separator</label>
@@ -24,8 +24,10 @@
 
         </div>
         <div class="output">
-            <h2>Output</h2>
-            <button onclick="calculateOutput()">Calculate</button>
+            <h2 class="inputOutputHeader">Output</h2>
+            <div class="outputOptions">
+                <button onclick="calculateOutput()" class="calculateBtn">Calculate</button>
+            </div>
             <textarea class="inOutAreas" id="outputArea"></textarea>
         </div>
     </main>

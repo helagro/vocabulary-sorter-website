@@ -7,41 +7,56 @@
 
 main{
     display: grid;
-    justify-content: center;
-    justify-items: stretch;
     grid-template-columns: 1fr;
     grid-template-rows: 50% 50%;
     height: 80vh;
-    max-width: 120em;
+    justify-content: center;
+    justify-items: stretch;
     margin: 0 auto;
+    max-width: 120em;
 }
 
 
-.input{
+.input, .output{
     display: grid;
+    grid-template-columns: 25em auto;
     grid-template-rows: 4em auto;
-    grid-template-columns: 20em auto;
 }
-.input h2{
+
+.inputOutputHeader{
     grid-column: 1 / -1;
-}
-
-.sortOptions{
-    display: grid;
-    grid-template-columns: max-content max-content 1fr;
-    grid-auto-rows: max-content;
-}
-
-h2{
     text-align: center;
 }
 
+.sortOptions, .outputOptions{
+    column-gap: 1em;
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-template-columns: max-content max-content 1fr;
+    margin: 1em;
+    align-items: center;
+}
+
 .inOutAreas{
-    height: 100%;
-    width: 100%;
-    font-size: large;
-    margin: 0;
-    padding: 0;
-    overflow: auto;
     border: 0.01em var(--border-color) solid;
+    font-size: large;
+    height: 100%;
+    margin: 0;
+    overflow: auto;
+    padding: 0;
+    width: 100%;
+}
+
+.calculateBtn{
+    background-color: rgb(19, 194, 19);
+    width: 100%;
+    grid-column: 1 / -1;
+    height: 3em;
+    font-size: larger;
+    font-weight: 600;
+    color: white;
+}
+
+.calculateBtn:active{
+    background-color: #0e920e;
 }
