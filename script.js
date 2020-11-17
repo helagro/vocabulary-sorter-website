@@ -10,5 +10,9 @@ function calculateOutput(){
 function fetchInput(){
     const inputHTML = $("#inputArea").html()
 
-    console.log(inputHTML)
+    const selectedSortTypeRadioButtonId = $('input[name="sortTypeRadio"]:checked').attr("id")
+    const selectedSortTypeInputId = selectedSortTypeRadioButtonId + "Input"
+    const selectedSortTypeInputVal = $("#" + selectedSortTypeInputId).val()
+
+    console.log(selectedSortTypeInputVal)
 }
