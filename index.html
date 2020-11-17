@@ -16,9 +16,9 @@
                 <label for="separator">Separator</label>
                 <input type="text" id="separatorInput">
 
-                <input type="radio" id="tag" name="sortTypeRadio">
-                <label for="tag">Tag</label>
-                <input type="text" id="tagInput">
+                <input type="radio" id="elementProperty" name="sortTypeRadio">
+                <label for="elementProperty">ElementProperty</label>
+                <input type="text" id="elementPropertyInput">
             </div>
             <div class="inOutAreas" id="inputArea" contenteditable></div>
 
@@ -26,7 +26,7 @@
         <div class="output">
             <h2>Output</h2>
             <button onclick="calculateOutput()">Calculate</button>
-            <textarea class="inOutAreas"></textarea>
+            <textarea class="inOutAreas" id="outputArea"></textarea>
         </div>
     </main>
 
