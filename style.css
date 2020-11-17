@@ -1,0 +1,42 @@
+
+:root{
+    --border-color: #666;
+}
+
+
+
+main{
+    display: grid;
+    justify-content: center;
+    justify-items: stretch;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50% 50%;
+    height: 80vh;
+    max-width: 120em;
+    margin: 0 auto;
+}
+
+
+.input{
+    display: grid;
+    grid-template-rows: 4em auto;
+    grid-template-columns: 20em auto;
+}
+.input h2{
+    grid-column: 1 / -1;
+}
+
+
+h2{
+    text-align: center;
+}
+
+.inOutAreas{
+    height: 100%;
+    width: 100%;
+    font-size: large;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    border: 0.01em var(--border-color) solid;
+}
