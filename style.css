@@ -3,6 +3,9 @@
     --border-color: #666;
 }
 
+header{
+    height: 2em
+}
 
 main{
     display: grid;
@@ -16,10 +19,22 @@ main{
 }
 
 
+.infoIcon{
+    height: 2em;
+    width: 2em;
+    float: right;
+    margin: .4em;
+    color: violet;
+}
+
+
+
 .input, .output{
     display: grid;
     grid-template-columns: 25em auto;
     grid-template-rows: 4em auto;
+    column-gap: 1em;
+    margin-right: 1em;
 }
 
 .inputOutputHeader{
@@ -65,7 +80,7 @@ main{
 }
 
 .calculateBtn{
-    background-color: rgb(19, 194, 19);
+    background-color: #13c213;
     width: 100%;
     grid-column: 1 / -1;
     height: 3em;
@@ -76,4 +91,12 @@ main{
 
 .calculateBtn:active{
     background-color: #0e920e;
+}
+
+
+.credit{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 1em;
 }
