@@ -42,31 +42,41 @@ function sortBySeperator(){
 }
 
 function sortByElementProperty(inputArea, selectedSortTypeInputVal){
-    const sort = selectedSortTypeInputVal.split(":")
-    if(sort.length != 2){
+    const cssRule = selectedSortTypeInputVal.split(":")
+    if(cssRule.length != 2){
         console.log('Invalid input, example: "font-weight:700"')
         return
     }
+    const trimmedCssRule = [cssRule[0].trim(), cssRule[0].trim()]
 
     let matching = []
     let noMatch = []
+
     const children = inputArea.find("*")
     for (child of children){
-        const text = $(child).text()
-
-        if(text == " ")
+        if(child.children.length != 0)
             continue
 
-        if($(child).css(sort[0]) == sort[1]){
+        const text = $(child).text()
+        if(isOnlyWhitespace(text))
+            continue
+
+        if(elementIsMatchingCssRule(child, cssRule)){
             matching.push(text)   
         } else{
             noMatch.push(text)
         }
-
-        
     }
     return {matching: matching,
             noMatch: noMatch}
+}
+
+function isOnlyWhitespace(str){
+    return str.trim() == ""
+}
+
+function elementIsMatchingCssRule(element, cssRule){
+    return $(element).css(cssRule[0]) == cssRule[1]
 }
 
 function printOutputs(output){
@@ -78,7 +88,14 @@ function printOutput(outpurArr, outputArea){
     outputArea.val("")
 
     for (word of outpurArr){
-        const formattedWord = word + "\n" //TODO better
+        const formattedWord = formatOutputWord(word)
         outputArea.val((index, val) => val + formattedWord )
     }
+}
+
+function formatOutputWord(word){
+    word = word.replace(/(?<=(^|\W))\W/g, "")
+    word += "\n"
+
+    return word
 }
