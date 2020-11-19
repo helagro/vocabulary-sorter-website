@@ -5,8 +5,8 @@
 function calculateOutput(){
     console.log("Started calculation")
     const {inputArea, selectedSortTypeRadioButtonId, selectedSortTypeInputVal} = fetchInput()
-    const outputArr = routeSortTypes(inputArea, selectedSortTypeRadioButtonId, selectedSortTypeInputVal)
-    printOutput(outputArr)
+    const output = routeSortTypes(inputArea, selectedSortTypeRadioButtonId, selectedSortTypeInputVal)
+    printOutputs(output)
 
 }
 
@@ -21,19 +21,24 @@ function fetchInput(){
 }
 
 function routeSortTypes(inputArea, selectedSortTypeRadioButtonId, selectedSortTypeInputVal){
-    var outputArr
+    var output
 
     switch(selectedSortTypeRadioButtonId){
         case "separator":
             break
         case "elementProperty":
-            outputArr = sortByElementProperty(inputArea, selectedSortTypeInputVal)
+            output = sortByElementProperty(inputArea, selectedSortTypeInputVal)
+            console.log(output)
             break
         default:
             console.log("Err: " + selectedSortTypeRadioButtonId)
     }
 
-    return outputArr
+    return output
+}
+
+function sortBySeperator(){
+
 }
 
 function sortByElementProperty(inputArea, selectedSortTypeInputVal){
@@ -43,24 +48,33 @@ function sortByElementProperty(inputArea, selectedSortTypeInputVal){
         return
     }
 
-    let res = []
+    let matching = []
+    let noMatch = []
     const children = inputArea.find("*")
     for (child of children){
-        if($(child).css(sort[0]) != sort[1])
-            continue 
-
         const text = $(child).text()
 
         if(text == " ")
             continue
 
-        res.push(text)
+        if($(child).css(sort[0]) == sort[1]){
+            matching.push(text)   
+        } else{
+            noMatch.push(text)
+        }
+
+        
     }
-    return res
+    return {matching: matching,
+            noMatch: noMatch}
 }
 
-function printOutput(outpurArr){
-    const outputArea = $("#outputArea")
+function printOutputs(output){
+    printOutput(output.noMatch, $("#outputArea"))
+    printOutput(output.matching, $("#outputArea1"))
+}
+
+function printOutput(outpurArr, outputArea){
     outputArea.val("")
 
     for (word of outpurArr){

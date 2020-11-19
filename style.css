@@ -47,6 +47,10 @@ main{
     width: 100%;
 }
 
+.output{
+    grid-template-columns: 25em auto auto;
+}
+
 .calculateBtn{
     background-color: rgb(19, 194, 19);
     width: 100%;
