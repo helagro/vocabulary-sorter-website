@@ -12,7 +12,7 @@
         <div class="input">
             <h2 class="inputOutputHeader">Input</h2>
             <div class="sortOptions">
-                <input type="radio" id="separator" name="sortTypeRadio">
+                <input type="radio" id="separator" name="sortTypeRadio" checked>
                 <label for="separator">Separator</label>
                 <input type="text" id="separatorInput">
 
@@ -20,7 +20,8 @@
                 <label for="elementProperty">ElementProperty</label>
                 <input type="text" id="elementPropertyInput">
             </div>
-            <div class="inOutAreas" id="inputArea" contenteditable></div>
+            <div class="inOutAreas inputArea" id="inputEditableDiv" contenteditable></div>
+            <textarea class="inOutAreas inputArea" id="inputTextArea"></textarea>
 
         </div>
         <div class="output">
@@ -33,6 +34,7 @@
         </div>
     </main>
 
+    <script src="inputAreaSwitcher.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

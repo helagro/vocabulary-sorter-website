@@ -11,7 +11,7 @@ function calculateOutput(){
 }
 
 function fetchInput(){
-    const inputArea = $("#inputArea")
+    const inputArea = showingInput
 
     const selectedSortTypeRadioButtonId = $('input[name="sortTypeRadio"]:checked').attr("id")
     const selectedSortTypeInputId = selectedSortTypeRadioButtonId + "Input"
@@ -25,10 +25,10 @@ function routeSortTypes(inputArea, selectedSortTypeRadioButtonId, selectedSortTy
 
     switch(selectedSortTypeRadioButtonId){
         case "separator":
+            output = sortBySeperator(inputArea, selectedSortTypeInputVal)
             break
         case "elementProperty":
             output = sortByElementProperty(inputArea, selectedSortTypeInputVal)
-            console.log(output)
             break
         default:
             console.log("Err: " + selectedSortTypeRadioButtonId)
@@ -37,18 +37,7 @@ function routeSortTypes(inputArea, selectedSortTypeRadioButtonId, selectedSortTy
     return output
 }
 
-function sortBySeperator(){
-
-}
-
-function sortByElementProperty(inputArea, selectedSortTypeInputVal){
-    const cssRule = selectedSortTypeInputVal.split(":")
-    if(cssRule.length != 2){
-        console.log('Invalid input, example: "font-weight:700"')
-        return
-    }
-    const trimmedCssRule = [cssRule[0].trim(), cssRule[0].trim()]
-
+function sortBySeperator(inputArea, selectedSortTypeInputVal){
     let matching = []
     let noMatch = []
 
@@ -62,6 +51,34 @@ function sortByElementProperty(inputArea, selectedSortTypeInputVal){
             continue
 
         if(elementIsMatchingCssRule(child, cssRule)){
+            matching.push(text)   
+        } else{
+            noMatch.push(text)
+        }
+    }
+}
+
+function sortByElementProperty(inputArea, selectedSortTypeInputVal){
+    const cssRule = selectedSortTypeInputVal.split(":")
+    if(cssRule.length != 2){
+        console.log('Invalid input, example: "font-weight:700"')
+        return
+    }
+    const trimmedCssRule = [cssRule[0].trim(), cssRule[1].trim()]
+
+    let matching = []
+    let noMatch = []
+
+    const children = inputArea.find("*")
+    for (child of children){
+        if(child.children.length != 0)
+            continue
+
+        const text = $(child).text()
+        if(isOnlyWhitespace(text))
+            continue
+
+        if(elementIsMatchingCssRule(child, trimmedCssRule)){
             matching.push(text)   
         } else{
             noMatch.push(text)
@@ -94,7 +111,7 @@ function printOutput(outpurArr, outputArea){
 }
 
 function formatOutputWord(word){
-    word = word.replace(/(?<=(^|\W))\W/g, "")
+    word = word.replace(/(?<=(^|\s|=))\W/g, "")
     word += "\n"
 
     return word

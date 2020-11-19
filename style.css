@@ -4,7 +4,6 @@
 }
 
 
-
 main{
     display: grid;
     grid-template-columns: 1fr;
@@ -47,6 +46,20 @@ main{
     width: 100%;
 }
 
+.inputArea{
+    display: none;
+}
+
+#inputTextArea{
+    border-color: blue;
+    display: unset;
+}
+
+#inputEditableDiv{
+    border-color: red;
+}
+
+/*ANCHOR output*/
 .output{
     grid-template-columns: 25em auto auto;
 }
