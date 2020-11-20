@@ -1,7 +1,18 @@
-
 :root{
     --border-color: #666;
 }
+
+header{
+    height: 2em
+}
+.infoIcon{
+    color: violet;
+    float: right;
+    height: 2em;
+    margin: .4em;
+    width: 2em;
+}
+
 
 
 main{
@@ -15,11 +26,12 @@ main{
     max-width: 120em;
 }
 
-
 .input, .output{
+    column-gap: 1em;
     display: grid;
     grid-template-columns: 25em auto;
     grid-template-rows: 4em auto;
+    margin-right: 1em;
 }
 
 .inputOutputHeader{
@@ -28,13 +40,14 @@ main{
 }
 
 .sortOptions, .outputOptions{
+    align-items: center;
     column-gap: 1em;
     display: grid;
     grid-auto-rows: max-content;
     grid-template-columns: auto auto 1fr;
     margin: 1em;
-    align-items: center;
 }
+
 
 .inOutAreas{
     border: 0.01em var(--border-color) solid;
@@ -45,19 +58,18 @@ main{
     padding: 0;
     width: 100%;
 }
-
 .inputArea{
     display: none;
 }
-
 #inputTextArea{
     border-color: blue;
     display: unset;
 }
-
 #inputEditableDiv{
     border-color: red;
 }
+
+
 
 /*ANCHOR output*/
 .output{
@@ -69,15 +81,23 @@ main{
 }
 
 .calculateBtn{
-    background-color: rgb(19, 194, 19);
-    width: 100%;
-    grid-column: 1 / -1;
-    height: 3em;
+    background-color: #13c213;
+    color: white;
     font-size: larger;
     font-weight: 600;
-    color: white;
+    grid-column: 1 / -1;
+    height: 3em;
+    width: 100%;
 }
 
 .calculateBtn:active{
     background-color: #0e920e;
+}
+
+
+.credit{
+    bottom: 0;
+    margin: 1em;
+    position: absolute;
+    right: 0;
 }

@@ -41,27 +41,28 @@ function sortBySeperator(inputArea, selectedSortTypeInputVal){
     let matching = []
     let noMatch = []
 
-    const children = inputArea.find("*")
-    for (child of children){
-        if(child.children.length != 0)
-            continue
-
-        const text = $(child).text()
-        if(isOnlyWhitespace(text))
-            continue
-
-        if(elementIsMatchingCssRule(child, cssRule)){
-            matching.push(text)   
-        } else{
-            noMatch.push(text)
-        }
+    const text = inputArea.val()
+    if(text.length == 0){
+        alert('Invalid input, example: "="')
+        return
     }
+
+    const lines = text.split("\n")
+
+    for(line of lines){
+        const qna = line.split(selectedSortTypeInputVal)
+        noMatch.push(qna[0])
+        matching.push(qna[1])
+    }
+
+    return {matching: matching,
+            noMatch: noMatch}
 }
 
 function sortByElementProperty(inputArea, selectedSortTypeInputVal){
     const cssRule = selectedSortTypeInputVal.split(":")
     if(cssRule.length != 2){
-        console.log('Invalid input, example: "font-weight:700"')
+        alert('Invalid input, example: "font-weight:700"')
         return
     }
     const trimmedCssRule = [cssRule[0].trim(), cssRule[1].trim()]

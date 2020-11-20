@@ -8,19 +8,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
+    <header>
+        <a href="https://github.com/helagro/vocabulary-sorter-website"><img src="information.svg" class="infoIcon"></a>
+    </header>
     <main>
         <div class="input">
             <h2 class="inputOutputHeader">Input</h2>
             <div class="sortOptions">
-                <input type="radio" id="separator" name="sortTypeRadio" checked>
+                <input type="radio" id="separator" name="sortTypeRadio" autocomplete='off' checked>
                 <label for="separator">Separator</label>
-                <input type="text" id="separatorInput">
+                <input type="text" id="separatorInput" placeholder='Ex: "="'>
 
-                <input type="radio" id="elementProperty" name="sortTypeRadio">
+                <input type="radio" id="elementProperty" name="sortTypeRadio" autocomplete='off'>
                 <label for="elementProperty">ElementProperty</label>
-                <input type="text" id="elementPropertyInput">
+                <input type="text" id="elementPropertyInput" placeholder='Ex: "font-weight:700"'>
             </div>
-            <div class="inOutAreas inputArea" id="inputEditableDiv" contenteditable></div>
+            <div class="inOutAreas inputArea" id="inputEditableDiv" contenteditable autocomplete='on'></div>
             <textarea class="inOutAreas inputArea" id="inputTextArea"></textarea>
 
         </div>
@@ -33,6 +36,10 @@
             </div>
             <textarea class="inOutAreas" id="outputArea"></textarea>
             <textarea class="inOutAreas" id="outputArea1"></textarea>
+        </div>
+
+        <div class="credit">
+            Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
         </div>
     </main>
 
