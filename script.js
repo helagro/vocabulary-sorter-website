@@ -4,9 +4,9 @@
 
 function calculateOutput(){
     console.log("Started calculation")
-    const {inputArea, selectedSortTypeRadioButtonId, selectedSortTypeInputVal, outputSeperator} = fetchInput()
+    const {inputArea, selectedSortTypeRadioButtonId, selectedSortTypeInputVal, outputseparator} = fetchInput()
     const output = routeSortTypes(inputArea, selectedSortTypeRadioButtonId, selectedSortTypeInputVal)
-    printOutputs(output, outputSeperator)
+    printOutputs(output, outputseparator)
 
 }
 
@@ -17,20 +17,20 @@ function fetchInput(){
     const selectedSortTypeInputId = selectedSortTypeRadioButtonId + "Input"
     const selectedSortTypeInputVal = $("#" + selectedSortTypeInputId).val()
 
-    const outputSeperatorRadioId = $("input[name='outputSeperatorRadio']:checked").attr("id")
-    const outputSeperator = getSeparator(outputSeperatorRadioId)
+    const outputseparatorRadioId = $("input[name='outputseparatorRadio']:checked").attr("id")
+    const outputseparator = getSeparator(outputseparatorRadioId)
 
-    return {inputArea, selectedSortTypeRadioButtonId, selectedSortTypeInputVal, outputSeperator}
+    return {inputArea, selectedSortTypeRadioButtonId, selectedSortTypeInputVal, outputseparator}
 }
 
-function getSeparator(outputSeperatorRadioId,){
-    switch(outputSeperatorRadioId){
-        case "newLineOutputSeperator":
+function getSeparator(outputseparatorRadioId,){
+    switch(outputseparatorRadioId){
+        case "newLineOutputseparator":
             return "\n"
-        case "customOutputSeperator":
-            const outputSeperatorValueId = outputSeperatorRadioId + "Input"
-            const outputSeperatorValue = $("#" + outputSeperatorValueId).val()
-            return outputSeperatorValue
+        case "customOutputseparator":
+            const outputseparatorValueId = outputseparatorRadioId + "Input"
+            const outputseparatorValue = $("#" + outputseparatorValueId).val()
+            return outputseparatorValue
     }
 }
 
@@ -39,7 +39,7 @@ function routeSortTypes(inputArea, selectedSortTypeRadioButtonId, selectedSortTy
 
     switch(selectedSortTypeRadioButtonId){
         case "separator":
-            output = sortBySeperator(inputArea, selectedSortTypeInputVal)
+            output = sortByseparator(inputArea, selectedSortTypeInputVal)
             break
         case "elementProperty":
             output = sortByElementProperty(inputArea, selectedSortTypeInputVal)
@@ -51,7 +51,7 @@ function routeSortTypes(inputArea, selectedSortTypeRadioButtonId, selectedSortTy
     return output
 }
 
-function sortBySeperator(inputArea, selectedSortTypeInputVal){
+function sortByseparator(inputArea, selectedSortTypeInputVal){
     let matching = []
     let noMatch = []
 
@@ -111,25 +111,25 @@ function elementIsMatchingCssRule(element, cssRule){
     return $(element).css(cssRule[0]) == cssRule[1]
 }
 
-function printOutputs(output, outputSeperator){
-    printOutput(output.noMatch, $("#outputArea"), outputSeperator)
-    printOutput(output.matching, $("#outputArea1"), outputSeperator)
+function printOutputs(output, outputseparator){
+    printOutput(output.noMatch, $("#outputArea"), outputseparator)
+    printOutput(output.matching, $("#outputArea1"), outputseparator)
 }
 
 
-function printOutput(outpurArr, outputArea, outputSeperator){
+function printOutput(outpurArr, outputArea, outputseparator){
     outputArea.val("")
 
     for (word of outpurArr){
-        const formattedWord = formatOutputWord(word, outputSeperator)
+        const formattedWord = formatOutputWord(word, outputseparator)
         outputArea.val((index, val) => val + formattedWord )
     }
 }
 
-function formatOutputWord(word, outputSeperator){
+function formatOutputWord(word, outputseparator){
     word = word.replace(/(?<=(^|\s|=))\W/g, "")
     word = word.trim()
-    word += outputSeperator
+    word += outputseparator
 
     return word
 }
