@@ -15,13 +15,16 @@
         <div class="input">
             <h2 class="inputOutputHeader">Input</h2>
             <div class="sortOptions">
-                <input type="radio" id="separator" name="sortTypeRadio" autocomplete='off' checked>
-                <label for="separator">Separator</label>
-                <input type="text" id="separatorInput" placeholder='Ex: "="'>
-
-                <input type="radio" id="elementProperty" name="sortTypeRadio" autocomplete='off'>
-                <label for="elementProperty">ElementProperty</label>
-                <input type="text" id="elementPropertyInput" placeholder='Ex: "font-weight:700"'>
+                <div class="optionSection">
+                    <h4 class="optionHeader">Sort options</h4>
+                    <input type="radio" id="separator" name="sortTypeRadio" autocomplete='off' checked>
+                    <label for="separator">Separator</label>
+                    <input type="text" id="separatorInput" placeholder='Ex: "="'>
+    
+                    <input type="radio" id="elementProperty" name="sortTypeRadio" autocomplete='off'>
+                    <label for="elementProperty">ElementProperty</label>
+                    <input type="text" id="elementPropertyInput" placeholder='Ex: "font-weight:700"'>
+                </div>
             </div>
             <div class="inOutAreas inputArea" id="inputEditableDiv" contenteditable autocomplete='on'></div>
             <textarea class="inOutAreas inputArea" id="inputTextArea"></textarea>
@@ -30,8 +33,17 @@
         <div class="output">
             <h2 class="inputOutputHeader">Output</h2>
             <div class="outputOptions">
-                <span>Word divider</span>
-                <input type="text" id="wordDivider">
+                <div class="optionSection">
+                    <h4 class="optionHeader">Word seperator</h4>
+
+                    <input type="radio" id="newLineOutputSeperator" name="outputSeperatorRadio" checked>
+                    <span class="twoWide">New line</span>
+    
+                    <input type="radio" id="customOutputSeperator" name="outputSeperatorRadio">
+                    <span>Custom</span>
+                    <input type="text" id="customOutputSeperatorInput">
+                </div>
+
                 <button onclick="calculateOutput()" class="calculateBtn">Calculate</button>
             </div>
             <textarea class="inOutAreas" id="outputArea"></textarea>

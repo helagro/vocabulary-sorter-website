@@ -4,9 +4,9 @@
 
 function calculateOutput(){
     console.log("Started calculation")
-    const {inputArea, selectedSortTypeRadioButtonId, selectedSortTypeInputVal} = fetchInput()
+    const {inputArea, selectedSortTypeRadioButtonId, selectedSortTypeInputVal, outputSeperator} = fetchInput()
     const output = routeSortTypes(inputArea, selectedSortTypeRadioButtonId, selectedSortTypeInputVal)
-    printOutputs(output)
+    printOutputs(output, outputSeperator)
 
 }
 
@@ -17,7 +17,21 @@ function fetchInput(){
     const selectedSortTypeInputId = selectedSortTypeRadioButtonId + "Input"
     const selectedSortTypeInputVal = $("#" + selectedSortTypeInputId).val()
 
-    return {inputArea, selectedSortTypeRadioButtonId, selectedSortTypeInputVal}
+    const outputSeperatorRadioId = $("input[name='outputSeperatorRadio']:checked").attr("id")
+    const outputSeperator = getSeparator(outputSeperatorRadioId)
+
+    return {inputArea, selectedSortTypeRadioButtonId, selectedSortTypeInputVal, outputSeperator}
+}
+
+function getSeparator(outputSeperatorRadioId,){
+    switch(outputSeperatorRadioId){
+        case "newLineOutputSeperator":
+            return "\n"
+        case "customOutputSeperator":
+            const outputSeperatorValueId = outputSeperatorRadioId + "Input"
+            const outputSeperatorValue = $("#" + outputSeperatorValueId).val()
+            return outputSeperatorValue
+    }
 }
 
 function routeSortTypes(inputArea, selectedSortTypeRadioButtonId, selectedSortTypeInputVal){
@@ -97,23 +111,25 @@ function elementIsMatchingCssRule(element, cssRule){
     return $(element).css(cssRule[0]) == cssRule[1]
 }
 
-function printOutputs(output){
-    printOutput(output.noMatch, $("#outputArea"))
-    printOutput(output.matching, $("#outputArea1"))
+function printOutputs(output, outputSeperator){
+    printOutput(output.noMatch, $("#outputArea"), outputSeperator)
+    printOutput(output.matching, $("#outputArea1"), outputSeperator)
 }
 
-function printOutput(outpurArr, outputArea){
+
+function printOutput(outpurArr, outputArea, outputSeperator){
     outputArea.val("")
 
     for (word of outpurArr){
-        const formattedWord = formatOutputWord(word)
+        const formattedWord = formatOutputWord(word, outputSeperator)
         outputArea.val((index, val) => val + formattedWord )
     }
 }
 
-function formatOutputWord(word){
+function formatOutputWord(word, outputSeperator){
     word = word.replace(/(?<=(^|\s|=))\W/g, "")
-    word += "\n"
+    word = word.trim()
+    word += outputSeperator
 
     return word
 }
