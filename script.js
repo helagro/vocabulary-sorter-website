@@ -127,6 +127,9 @@ function printOutput(outpurArr, outputArea, outputseparator){
 }
 
 function formatOutputWord(word, outputseparator){
+    if(!word)
+        return " "
+
     word = word.replace(/(?<=(^|\s|=))\W/g, "")
     word = word.trim()
     word += outputseparator
